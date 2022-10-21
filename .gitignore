@@ -1,23 +1,79 @@
 # Compiled class file
-*.class
+Employee.class
 
-# Log file
-*.log
+public class Employee {
 
-# BlueJ files
-*.ctxt
+String name;
+double salary;
+double workHours;
+int hireYear;
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+public Employee(String name, double salary, double workHours, int hireYear) {
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+this.name = name;
+this.salary = salary;
+this.workHours = workHours;
+this.hireYear = hireYear;
+}
+
+
+public double raiseSalary(){
+if(2021 - hireYear < 10 && 2021 - hireYear <= 0) {
+salary += (this.salary* 0.05)+ bonus() - tax() ;
+}
+else if(2021 - hireYear > 9 && 2021 - hireYear < 20) {
+salary += (this.salary* 0.1) + bonus() - tax() ;
+}
+else if(2021 - hireYear > 19) {
+salary += (this.salary * 0.15) + bonus() - tax();
+}
+else {
+System.out.println("Invalid hire year.");
+}
+return salary;
+}
+
+public double tax(){
+
+double tax=0;
+if(salary < 1000 ) {
+return tax;
+}
+else if (salary > 1000) {
+tax = salary * 0.03;
+
+}return tax;
+}
+
+public double bonus() {
+
+double bonus=0;
+if(workHours > 40) {
+bonus += (workHours - 40) * 30;
+}
+else {
+System.out.println("There is no bonus for this employee.");
+}
+return bonus;
+}
+
+public String toString()
+{
+
+return "Adı: "+ name + "\nMaaşı: " + salary + "\nÇalışma Saati: " + workHours
++ "\nBaşlangıç Yılı: " + hireYear + "\nVergi: " + tax() + "\nBonus: " + bonus()
++ "\nMaaş Artışı: " +  "\nVergi ve Bonuslar ile Maaş: " + (this.salary+bonus()-tax())
++"\nToplam Maaş: " + raiseSalary();
+
+}
+
+
+public static void main(String[] args){
+
+    Employee a = new Employee("Kemal", 2000, 45, 1985);
+   
+    System.out.println(a.toString());
+   
+}
+}
